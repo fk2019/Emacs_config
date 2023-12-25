@@ -61,23 +61,12 @@
 ;; Disable line-numbers for org mode
 (dolist (mode '(org-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
-;;Browse URL in Emacs under WSL. I visisted https://hungyi.net/posts/browse-emacs-urls-wsl/ foe this help
-(when (and (eq system-type 'gnu/linux)
-           (string-match
-            "Linux.*Microsoft.*Linux"
-            (shell-command-to-string "uname -a")))
-  (setq
-   browse-url-generic-program  "/mnt/c/Windows/System32/cmd.exe"
-   browse-url-generic-args     '("/c" "start")
-   browse-url-browser-function #'browse-url-generic))
 
 ;; Add language support
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)
    (C . t)))
-
-(require 'htmlize)
 
 (require 'ox-md)
 
